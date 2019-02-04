@@ -1,5 +1,6 @@
 // Import FirebaseAuth and firebase.
 import React from 'react';
+import ReactDOM from 'react-dom';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -52,7 +53,11 @@ class SignInScreen extends React.Component {
   }
 
   checkEmail(){
-    if (firebase.auth().currentUser.email != 'gabor@artixa.hu'){
+    if (firebase.auth().currentUser.email == 'gabor@artixa.hu'){
+      ReactDOM.render(<Fokusz />, document.getElementById('appId'));
+      console.log(this.appId)
+    }
+    else {
       firebase.auth().signOut();
     }
   }
@@ -69,11 +74,10 @@ class SignInScreen extends React.Component {
     }
     return (
       this.checkEmail(),
-      <Route path ="/Fokusz" component={Fokusz} />,
       <div>
-        <h1>My App</h1>
         <p>Welcome {firebase.auth().currentUser.email}! You are now signed-in!</p>
         <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+        <div id="appId"></div>
       </div>
     );
   }

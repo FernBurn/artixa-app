@@ -9,7 +9,6 @@ const App = ()=> {
     <Router>
        <div>
          <Route exact path ="/" component={SignInScreen} />
-         <Route exact path ="/Fokusz" component={Fokusz} />
        </div>
     </Router>
   );
